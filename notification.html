@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset = "UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do Reminder</title>
+    <link rel="stylesheet" href="styles/notification.css">
+</head>
+<body>
+    <div class="notification">
+        <img src="images/icon48.png" alt="Reminder Icon" class = "icon">
+        <div class = "text">
+            <h3>Reminder</h3>
+            <p id="tasks">Loading tasks...</p>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            chrome.storage.sync.get("tasks", function (data) {
+                const tasks = data.tasks ? data.tasks.join(", ") : "No tasks found.";
+                document.getElementById("tasks").textContent = tasks;
+            });
+        });
+    </script>
+</body>
+</html>
