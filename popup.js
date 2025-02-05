@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    addTaskButton.addEventListener("click", function() {
+    taskButton.addEventListener("click", function() {
         const task = taskInput.value.trim();
         if (task) {
             chrome.storage.sync.get("tasks", function(data) {
