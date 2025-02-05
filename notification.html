@@ -14,13 +14,6 @@
             <p id="tasks">Loading tasks...</p>
         </div>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            chrome.storage.sync.get("tasks", function (data) {
-                const tasks = data.tasks ? data.tasks.join(", ") : "No tasks found.";
-                document.getElementById("tasks").textContent = tasks;
-            });
-        });
-    </script>
+    <script src="scripts/externalnoti.js"></script>
 </body>
 </html>
