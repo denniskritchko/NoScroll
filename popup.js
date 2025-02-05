@@ -9,7 +9,14 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    taskButton.addEventListener("click", function() {
+    taskButton.addEventListener("click", addTask);
+    taskInput.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            addTask();
+        }
+    });
+
+    function addTask() {
         const task = taskInput.value.trim();
         if (task) {
             chrome.storage.sync.get("tasks", function(data) {
@@ -20,11 +27,21 @@ document.addEventListener("DOMContentLoaded", function() {
                 taskInput.value = "";
             });
         }
-    })
+    }
 
     function addTaskToDOM(task) {
         const li = document.createElement("li");
         li.textContent = task;
         taskList.appendChild(li);
+    }
+
+    function deleteTask(task, taskElement) {
+        chrome.storage.sync.get("tasks", function(data) {
+            const tasks = data.tasks || [];
+            const updatedTasks = tasks.filter(t => t !== task);
+            chrome.storage.sync.set({"tasks": updatedTasks}, function() {
+                taskList.removeChild(taskElement);
+            })
+        })
     }
 });
