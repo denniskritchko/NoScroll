@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function addTaskToDOM(task) {
         const li = document.createElement("li");
+
+
         const maxLength = 34;
         const paragraphs = splitIntoParagraphs(task, maxLength);
         paragraphs.forEach(paragraph => {
@@ -60,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         words.forEach(word => {
             if ((paragraph+word).length > maxLength) {
-                paragraphs.push(paragraph.trim());
+                paragraphs.push(paragraph.trim() + "\n");
                 paragraph = word + " ";
             } else {
                 paragraph += word + " "
