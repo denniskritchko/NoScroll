@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "NoScroll",
-    "version": "1.1",
+    "version": "1.12",
     "description": "A to-do list that prevents doomscrolling by popping up notifications every 30 minutes.",
     "permissions": ["storage", "notifications", "alarms", "system.display"],
     "background": {
@@ -17,7 +17,7 @@
     },
     "web_accessible_resources": [
         {
-            "resources": ["notification.html", "styles/notification.css", "images/icon16.png"],
+            "resources": ["notification.html", "styles/notification.css", "images/icon16.png", "images/icon48.png"],
             "matches": ["<all_urls>"]
         }
     ]

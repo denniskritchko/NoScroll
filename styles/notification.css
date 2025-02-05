@@ -1,28 +1,18 @@
-body {
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    font-family:'Courier New', Courier, monospace;
-}
 
 .notification {
     display: flex;
-    align-items: center;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    background-color: #ffffff;
-    position: fixed;
-    top: 10px;
-    left: 17px;
-    width: 280px;
-    animation: slide-in 0.5s ease-out;
+    align-items: flex-start;
+    padding: 12px;
+    background: white;
+    border-radius: 4px;
+    max-width: 300px;
 }
 
 .icon {
+    flex-shrink: 0;
+    margin-right: 12px;
     width: 48px;
     height: 48px;
-    margin-right: 10px;
 }
 
 .text {
@@ -30,18 +20,15 @@ body {
 }
 
 .text h3 {
-    margin: 5px 0 0;
+    margin: 0 0 8px 0;
     font-size: 14px;
-    color: #555555;
 }
 
-@keyframes slide-in{
-    from {
-        transform: translateX(300px);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
+.text p {
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    line-height: 1.4;
+    max-width: 220px;
 }
+
