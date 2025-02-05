@@ -53,4 +53,23 @@ document.addEventListener("DOMContentLoaded", function() {
             })
         })
     }
+
+    function splitIntoParagraphs(text, maxLength) {
+        const words = text.split(" ");
+        let paragraph = "";
+        const paragraphs = [];
+
+        words.forEach(word => {
+            if ((paragraph+word).length > maxLength) {
+                paragraphs.push(paragraph.trim());
+                paragraph = word + " ";
+            } else {
+                paragraph += word + " "
+            }
+        });
+        if (paragraph.trim()) {
+            paragraphs.push(paragraph.trim());
+        }
+        return paragraphs;
+    }
 });
