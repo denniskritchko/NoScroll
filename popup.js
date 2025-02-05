@@ -9,14 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    taskButton.addEventListener("click", addTask);
-    taskInput.addEventListener("keypress", function(event) {
-        if (event.key === "Enter") {
-            addTask();
-        }
-    });
-
-    function addTask() {
+    taskButton.addEventListener("click", function() {
         const task = taskInput.value.trim();
         if (task) {
             chrome.storage.sync.get("tasks", function(data) {
@@ -27,14 +20,20 @@ document.addEventListener("DOMContentLoaded", function() {
                 taskInput.value = "";
             });
         }
-    }
+    });
 
     function addTaskToDOM(task) {
         const li = document.createElement("li");
-        li.textContent = task;
+        const maxLength = 34;
+        const paragraphs = splitIntoParagraphs(task, maxLength);
+        paragraphs.forEach(paragraph => {
+            const p = document.createElement("p");
+            p.textContent = paragraph;
+            li.appendChild(p);
+        });
 
         const deleteButton = document.createElement("span");
-        deleteButton.textContent = "❌";
+        deleteButton.textContent = "✖";
         deleteButton.className = "delete";
         deleteButton.addEventListener("click", function() {
             deleteTask(task, li);
