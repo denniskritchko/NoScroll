@@ -32,6 +32,15 @@ document.addEventListener("DOMContentLoaded", function() {
     function addTaskToDOM(task) {
         const li = document.createElement("li");
         li.textContent = task;
+
+        const deleteButton = document.createElement("span");
+        deleteButton.textContent = "❌";
+        deleteButton.className = "delete";
+        deleteButton.addEventListener("click", function() {
+            deleteTask(task, li);
+        });
+
+        li.appendChild(deleteButton);
         taskList.appendChild(li);
     }
 
