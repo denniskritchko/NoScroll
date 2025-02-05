@@ -1,5 +1,5 @@
 chrome.runtime.onInstalled.addListener(() => {
-    chrome.alarms.create("reminder", { periodInMinutes: 0.1 });
+    chrome.alarms.create("reminder", { periodInMinutes: 30 });
 });
 
 chrome.alarms.onAlarm.addListener((alarm) => {
