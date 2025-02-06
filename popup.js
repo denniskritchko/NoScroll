@@ -1,8 +1,10 @@
+// function to load DOM content into popup.html
 document.addEventListener("DOMContentLoaded", function() {
     const taskInput = document.getElementById("taskInput");
     const taskButton = document.getElementById("addTask");
     const taskList = document.getElementById("taskList");
 
+    // style for task list
     const style = document.createElement("style");
     style.textContent = `
         li {
@@ -23,14 +25,17 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     `;
 
+    // add style to head
     document.head.appendChild(style);
     
+    // sync storage from sessions
     chrome.storage.sync.get("tasks", function (data) {
         if (data.tasks){
             data.tasks.forEach(task => addTaskToDOM(task));
         }
     });
 
+    // add functionality from add button
     taskButton.addEventListener("click", function() {
         const task = taskInput.value.trim();
         if (task) {
@@ -44,6 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    // push task onto DOM and create elements for deletion
     function addTaskToDOM(task) {
         const li = document.createElement("li");
         const maxLength = 25;
@@ -66,6 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
         taskList.appendChild(li);
     }
 
+    // delete task from DOM and storage
     function deleteTask(task, taskElement) {
         chrome.storage.sync.get("tasks", function(data) {
             const tasks = data.tasks || [];
@@ -76,6 +83,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    // split long text into paragraphs, maxLength set to 25
     function splitIntoParagraphs(text, maxLength) {
         if (text.length <= maxLength) { return text; }
 

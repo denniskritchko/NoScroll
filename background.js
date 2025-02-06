@@ -1,7 +1,9 @@
+// create alarm that triggers every 30 minutes
 chrome.runtime.onInstalled.addListener(() => {
     chrome.alarms.create("reminder", { periodInMinutes: 30 });
 });
 
+// when reminder alarm rings, check tasks in storage and create notification popup
 chrome.alarms.onAlarm.addListener((alarm) => {
     if (alarm.name === "reminder") {
         chrome.storage.sync.get("tasks", function (data) {
