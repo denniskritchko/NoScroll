@@ -17,7 +17,8 @@
     },
     "web_accessible_resources": [
         {
-            "resources": ["notification.html", "styles/notification.css", "images/icon16.png", "images/icon48.png"],
+            "resources": ["notification.html", "styles/notification.css", "images/icon16.png", "images/icon48.png", "scripts/externalnoti.js", "sounds/delete.wav", "sounds/notification.wav"
+                        ,"sounds/add.wav"],
             "matches": ["<all_urls>"]
         }
     ]

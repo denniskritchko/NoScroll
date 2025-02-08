@@ -37,6 +37,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // add functionality from add button
     taskButton.addEventListener("click", function() {
+    taskInput.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            taskButton.click();
+        }
+    });
         const task = taskInput.value.trim();
         if (task) {
             chrome.storage.sync.get("tasks", function(data) {
@@ -45,6 +50,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 chrome.storage.sync.set({"tasks": tasks});
                 addTaskToDOM(task);
                 taskInput.value = "";
+                const audio = document.getElementById("addsound");
+                audio.play().catch(error => console.error("Error playing audio: ", error));
             });
         }
     });
