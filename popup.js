@@ -59,6 +59,8 @@ document.addEventListener("DOMContentLoaded", function() {
         deleteButton.textContent = "X";
         deleteButton.className = "delete";
         deleteButton.addEventListener("click", function() {
+            const audio = document.getElementById("deletesound");
+            audio.play().catch(error => console.error("Error playing audio: ", error));
             deleteTask(task, li);
         });
 

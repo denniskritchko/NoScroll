@@ -32,7 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
         
         return result.join('\n');
     }
-
+    
+    const audio = document.getElementById("notificationsound");
+    audio.play().catch(error =>console.error("Error playing audio: ", error));
     chrome.storage.sync.get("tasks", function (data) {
         const tasks = data.tasks && data.tasks.length > 0 ? data.tasks[0] : "No tasks";
         const formattedTasks = formatText(tasks, 32); // Adjusted to 32 characters per line
