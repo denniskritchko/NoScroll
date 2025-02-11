@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const taskInput = document.getElementById("taskInput");
     const taskButton = document.getElementById("addTask");
     const taskList = document.getElementById("taskList");
+    const clearList = document.getElementById("clearList");
 
     // style for task list
     const style = document.createElement("style");
@@ -66,6 +67,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
             }
         }
+    });
+
+    clearList.addEventListener("click", function() {
+        chrome.storage.sync.set({"tasks": []}, function() {
+            while (taskList.firstChild) {
+                taskList.removeChild(taskList.firstChild);
+            }
+        });
     });
 
     // push task onto DOM and create elements for deletion
