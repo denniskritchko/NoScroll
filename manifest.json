@@ -3,7 +3,7 @@
     "name": "NoScroll",
     "version": "1.12",
     "description": "A to-do list that prevents doomscrolling by popping up notifications every 30 minutes.",
-    "permissions": ["storage", "notifications", "alarms", "system.display"],
+    "permissions": ["storage", "alarms", "system.display"],
     "background": {
         "service_worker": "background.js"
     },
