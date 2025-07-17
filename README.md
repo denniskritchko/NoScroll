@@ -144,7 +144,7 @@ src/
 
 ## Sample
 
-![NoScroll Extension](https://github.com/user-attachments/assets/dfb9b9a7-49a7-45dc-89a8-0ed8c85f9aa4)
+<img width="376" height="495" alt="Screenshot 2025-07-16 at 10 19 22 PM" src="https://github.com/user-attachments/assets/fd808514-2845-4715-8bb5-2b37faf43b0a" />
 
 ## License
 
