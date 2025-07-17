@@ -46,7 +46,12 @@ export const updateNotificationInterval = async (interval: number): Promise<void
   // Update the alarm with the new interval
   chrome.alarms.clear("reminder");
   if (updatedSettings.enabled) {
-    chrome.alarms.create("reminder", { periodInMinutes: interval });
+    // Chrome Alarms API requires minimum 1 minute, so we'll use delayInMinutes for sub-minute intervals
+    if (interval < 1) {
+      chrome.alarms.create("reminder", { delayInMinutes: interval });
+    } else {
+      chrome.alarms.create("reminder", { periodInMinutes: interval });
+    }
   }
 };
 
@@ -56,7 +61,11 @@ export const toggleNotifications = async (enabled: boolean): Promise<void> => {
   await saveSettings(updatedSettings);
   
   if (enabled) {
-    chrome.alarms.create("reminder", { periodInMinutes: settings.notificationInterval });
+    if (settings.notificationInterval < 1) {
+      chrome.alarms.create("reminder", { delayInMinutes: settings.notificationInterval });
+    } else {
+      chrome.alarms.create("reminder", { periodInMinutes: settings.notificationInterval });
+    }
   } else {
     chrome.alarms.clear("reminder");
   }

@@ -5,7 +5,12 @@ chrome.runtime.onInstalled.addListener(async () => {
   try {
     const settings = await getSettings();
     if (settings.enabled) {
-      chrome.alarms.create("reminder", { periodInMinutes: settings.notificationInterval });
+      if (settings.notificationInterval < 1) {
+        // For sub-minute intervals, create a 1-minute alarm that will be reset
+        chrome.alarms.create("reminder", { periodInMinutes: 1 });
+      } else {
+        chrome.alarms.create("reminder", { periodInMinutes: settings.notificationInterval });
+      }
     }
   } catch (error) {
     console.error('Error setting up initial alarm:', error);
@@ -27,7 +32,7 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
 
       chrome.storage.sync.get("tasks", function (data) {
         if (data.tasks && data.tasks.length > 0) {
-          const url = chrome.runtime.getURL("notification.html");
+          const url = chrome.runtime.getURL("dist/notification.html");
           chrome.system.display.getInfo((displays) => {
             const primaryDisplay = displays.find(display => display.isPrimary === true) || displays[0];
             const screenWidth = primaryDisplay.workArea.width;
@@ -36,14 +41,20 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
             chrome.windows.create({
               url: url,
               type: "popup",
-              width: 350,
-              height: 150,
-              top: 10,
-              left: screenWidth - 310
+              width: 420,
+              height: 280,
+              top: 20,
+              left: screenWidth - 440
             });
           });
         }
       });
+
+      // For sub-minute intervals, reset the alarm to maintain the shorter interval
+      if (settings.notificationInterval < 1) {
+        chrome.alarms.clear("reminder");
+        chrome.alarms.create("reminder", { delayInMinutes: settings.notificationInterval });
+      }
     } catch (error) {
       console.error('Error handling alarm:', error);
     }

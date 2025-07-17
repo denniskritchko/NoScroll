@@ -57,6 +57,7 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
   };
 
   const intervalOptions = [
+    { value: 0.5, label: '30 seconds', color: 'bg-purple-500' },
     { value: 15, label: '15 minutes' },
     { value: 30, label: '30 minutes' },
     { value: 45, label: '45 minutes' },
@@ -64,6 +65,19 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
     { value: 90, label: '1.5 hours' },
     { value: 120, label: '2 hours' },
   ];
+
+  const formatInterval = (minutes: number): string => {
+    if (minutes < 1) {
+      return `${minutes * 60} seconds`;
+    } else if (minutes < 60) {
+      return `${minutes} minutes`;
+    } else if (minutes === 60) {
+      return '1 hour';
+    } else {
+      const hours = minutes / 60;
+      return `${hours} hours`;
+    }
+  };
 
   if (!isOpen) return null;
 
@@ -132,7 +146,9 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
                       disabled={saving || !settings.enabled}
                       className={`px-3 py-2 text-sm rounded-lg border transition-all duration-200 ${
                         settings.notificationInterval === option.value
-                          ? 'bg-primary-50 dark:bg-primary-900/30 border-primary-200 dark:border-primary-700 text-primary-700 dark:text-primary-300'
+                          ? option.value === 0.5 
+                            ? 'bg-purple-50 dark:bg-purple-900/30 border-purple-200 dark:border-purple-700 text-purple-700 dark:text-purple-300'
+                            : 'bg-primary-50 dark:bg-primary-900/30 border-primary-200 dark:border-primary-700 text-primary-700 dark:text-primary-300'
                           : 'bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-500'
                       } ${
                         !settings.enabled ? 'opacity-50 cursor-not-allowed' : ''
@@ -152,7 +168,7 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
                   }`} />
                   <span className="text-xs text-gray-600 dark:text-gray-300">
                     {settings.enabled 
-                      ? `Reminders every ${settings.notificationInterval} minutes`
+                      ? `Reminders every ${formatInterval(settings.notificationInterval)}`
                       : 'Notifications disabled'
                     }
                   </span>
