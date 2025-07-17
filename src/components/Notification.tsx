@@ -78,7 +78,7 @@ const Notification: React.FC = () => {
 
   if (!task) {
     return (
-      <div className="w-[380px] h-[180px] bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+      <div className="w-full h-full bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
         <div className="p-6 h-full flex flex-col">
           {/* Header */}
           <div className="flex items-center space-x-3 mb-4">
@@ -118,7 +118,7 @@ const Notification: React.FC = () => {
   }
 
   return (
-    <div className="w-[380px] h-[180px] bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <div className="w-full h-full bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
       <div className="p-6 h-full flex flex-col">
         {/* Header */}
         <div className="flex items-center space-x-3 mb-4">
