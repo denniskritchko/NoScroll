@@ -13,13 +13,25 @@
   background: #f1f5f9;
 }
 
+.dark ::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
 ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
   border-radius: 2px;
 }
 
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
 }
 
 /* Chrome extension specific styles */
@@ -28,6 +40,7 @@ body {
   min-height: 500px;
   margin: 0;
   font-family: 'Inter', system-ui, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Smooth transitions */
@@ -39,6 +52,10 @@ body {
 .focus-ring:focus {
   outline: 2px solid #0ea5e9;
   outline-offset: 2px;
+}
+
+.dark .focus-ring:focus {
+  outline: 2px solid #38bdf8;
 }
 
 /* Custom animations */
@@ -55,4 +72,24 @@ body {
   background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
   background-size: 200px 100%;
   animation: shimmer 1.5s infinite;
+}
+
+.dark .shimmer {
+  background: linear-gradient(90deg, #334155 25%, #475569 50%, #334155 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Dark mode specific overrides */
+.dark {
+  color-scheme: dark;
+}
+
+/* Ensure proper contrast in dark mode */
+.dark input::placeholder {
+  color: #9ca3af;
+}
+
+.dark textarea::placeholder {
+  color: #9ca3af;
 } 

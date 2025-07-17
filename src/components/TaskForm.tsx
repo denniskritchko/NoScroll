@@ -34,7 +34,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onTaskAdded }) => {
   ];
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-lg border border-gray-200 p-4 mb-4 shadow-sm">
+    <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 mb-4 shadow-sm">
       <div className="space-y-3">
         {/* Task Input */}
         <div>
@@ -42,7 +42,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onTaskAdded }) => {
             value={taskText}
             onChange={(e) => setTaskText(e.target.value)}
             placeholder="What do you need to accomplish?"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
+            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
             rows={2}
             disabled={isSubmitting}
           />
@@ -50,7 +50,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onTaskAdded }) => {
 
         {/* Priority Selection */}
         <div className="flex items-center justify-between">
-          <label className="text-sm font-medium text-gray-700">Priority:</label>
+          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">Priority:</label>
           <div className="flex space-x-2">
             {priorityOptions.map((option) => (
               <button
@@ -60,7 +60,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onTaskAdded }) => {
                 className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
                   priority === option.value
                     ? `${option.color} text-white shadow-md`
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                 }`}
               >
                 {option.label}
@@ -73,7 +73,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onTaskAdded }) => {
         <button
           type="submit"
           disabled={!taskText.trim() || isSubmitting}
-          className="w-full bg-gradient-to-r from-primary-500 to-primary-600 text-white py-2 px-4 rounded-lg font-medium hover:from-primary-600 hover:to-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+          className="w-full bg-gradient-to-r from-primary-500 to-primary-600 text-white py-2 px-4 rounded-lg font-medium hover:from-primary-600 hover:to-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
         >
           {isSubmitting ? (
             <div className="flex items-center justify-center space-x-2">

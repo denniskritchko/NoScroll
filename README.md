@@ -5,6 +5,7 @@ A Chrome extension that reminds users to complete their highest priority tasks o
 ## Features
 
 - **Modern UI**: Built with React and Tailwind CSS for a sleek, minimal design
+- **Dark Mode Support**: Automatically follows your system's light/dark theme preference
 - **Priority System**: Tasks can be assigned Low, Medium, or High priority
 - **Smart Reminders**: Customizable notifications every 15 minutes to 2 hours
 - **Task Management**: Add, complete, delete, and reorder tasks by priority
@@ -18,6 +19,7 @@ A Chrome extension that reminds users to complete their highest priority tasks o
 - **Build Tool**: Webpack 5
 - **Chrome APIs**: Storage Sync API, Alarms API, System Display API
 - **Styling**: Custom animations, gradients, and modern design patterns
+- **Theme**: Automatic light/dark mode detection
 
 ## Development
 
@@ -68,6 +70,22 @@ npm run build
    - Toggle notifications on/off
 4. **Clearing**: Use the "Clear All" button to remove all tasks
 
+## Dark Mode
+
+The extension automatically detects and follows your system's theme preference:
+
+- **Light Mode**: Clean, bright interface with subtle shadows
+- **Dark Mode**: Easy on the eyes with dark backgrounds and proper contrast
+- **Automatic Switching**: Changes instantly when you switch your system theme
+- **Consistent Experience**: All components adapt seamlessly to both themes
+
+### Dark Mode Features:
+- Dark backgrounds with proper contrast ratios
+- Adjusted text colors for readability
+- Modified borders and shadows
+- Updated hover states and focus rings
+- Consistent color scheme across all components
+
 ## Settings
 
 ### Notification Intervals
@@ -111,17 +129,18 @@ src/
 - **Responsive Layout**: Optimized for the extension popup format
 - **Accessibility**: Focus states and keyboard navigation support
 - **Settings Modal**: Clean, intuitive settings interface
+- **Theme Adaptation**: Seamless light/dark mode switching
 
 ## Future Enhancements
 
 - [ ] Task categories/tags
 - [ ] Task due dates
 - [ ] Progress tracking
-- [ ] Dark mode support
 - [ ] Task templates
 - [ ] Export/import functionality
 - [ ] Custom notification sounds
 - [ ] Do not disturb hours
+- [ ] Manual theme toggle (override system preference)
 
 ## Sample
 

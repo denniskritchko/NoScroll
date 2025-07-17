@@ -4,6 +4,7 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
     "./src/**/*.html"
   ],
+  darkMode: 'media', // This will follow the system preference
   theme: {
     extend: {
       colors: {
