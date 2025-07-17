@@ -52,7 +52,9 @@ const Popup: React.FC = () => {
   const pendingCount = tasks.filter(task => !task.completed).length;
 
   const formatInterval = (minutes: number): string => {
-    if (minutes < 60) {
+    if (minutes < 1) {
+      return `${minutes * 60} seconds`;
+    } else if (minutes < 60) {
       return `${minutes} minutes`;
     } else if (minutes === 60) {
       return '1 hour';
