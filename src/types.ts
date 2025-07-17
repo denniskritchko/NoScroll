@@ -13,4 +13,10 @@ export interface TaskFormData {
 
 export interface ChromeStorageData {
   tasks?: Task[];
+  settings?: Settings;
+}
+
+export interface Settings {
+  notificationInterval: number; // in minutes
+  enabled: boolean;
 } 

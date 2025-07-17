@@ -1,7 +1,13 @@
-import { Task, ChromeStorageData } from '../types';
+import { Task, ChromeStorageData, Settings } from '../types';
 
 export const generateId = (): string => {
   return Date.now().toString(36) + Math.random().toString(36).substr(2);
+};
+
+// Default settings
+export const DEFAULT_SETTINGS: Settings = {
+  notificationInterval: 30,
+  enabled: true,
 };
 
 export const getTasks = (): Promise<Task[]> => {
@@ -16,6 +22,44 @@ export const saveTasks = (tasks: Task[]): Promise<void> => {
   return new Promise((resolve) => {
     chrome.storage.sync.set({ tasks }, resolve);
   });
+};
+
+export const getSettings = (): Promise<Settings> => {
+  return new Promise((resolve) => {
+    chrome.storage.sync.get('settings', (data: ChromeStorageData) => {
+      resolve(data.settings || DEFAULT_SETTINGS);
+    });
+  });
+};
+
+export const saveSettings = (settings: Settings): Promise<void> => {
+  return new Promise((resolve) => {
+    chrome.storage.sync.set({ settings }, resolve);
+  });
+};
+
+export const updateNotificationInterval = async (interval: number): Promise<void> => {
+  const settings = await getSettings();
+  const updatedSettings = { ...settings, notificationInterval: interval };
+  await saveSettings(updatedSettings);
+  
+  // Update the alarm with the new interval
+  chrome.alarms.clear("reminder");
+  if (updatedSettings.enabled) {
+    chrome.alarms.create("reminder", { periodInMinutes: interval });
+  }
+};
+
+export const toggleNotifications = async (enabled: boolean): Promise<void> => {
+  const settings = await getSettings();
+  const updatedSettings = { ...settings, enabled };
+  await saveSettings(updatedSettings);
+  
+  if (enabled) {
+    chrome.alarms.create("reminder", { periodInMinutes: settings.notificationInterval });
+  } else {
+    chrome.alarms.clear("reminder");
+  }
 };
 
 export const addTask = async (taskText: string, priority: number = 1): Promise<Task> => {

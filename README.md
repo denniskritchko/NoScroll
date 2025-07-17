@@ -6,10 +6,11 @@ A Chrome extension that reminds users to complete their highest priority tasks o
 
 - **Modern UI**: Built with React and Tailwind CSS for a sleek, minimal design
 - **Priority System**: Tasks can be assigned Low, Medium, or High priority
-- **Smart Reminders**: Notifications every 30 minutes showing your highest priority task
+- **Smart Reminders**: Customizable notifications every 15 minutes to 2 hours
 - **Task Management**: Add, complete, delete, and reorder tasks by priority
 - **Persistent Storage**: Tasks sync across browser sessions
 - **Responsive Design**: Beautiful animations and hover effects
+- **Settings Panel**: Customize notification intervals and toggle notifications on/off
 
 ## Tech Stack
 
@@ -61,8 +62,26 @@ npm run build
    - Click the checkbox to mark tasks as complete
    - Hover over tasks to see priority controls and delete button
    - Use the "Show/Hide Completed" toggle to filter tasks
-3. **Reminders**: Every 30 minutes, a notification will appear with your highest priority task
+3. **Customizing Reminders**: 
+   - Click the settings gear icon in the header
+   - Choose from 15 minutes to 2 hours for notification intervals
+   - Toggle notifications on/off
 4. **Clearing**: Use the "Clear All" button to remove all tasks
+
+## Settings
+
+### Notification Intervals
+- **15 minutes** - For high-frequency reminders
+- **30 minutes** - Default setting (recommended)
+- **45 minutes** - Moderate frequency
+- **1 hour** - Less frequent reminders
+- **1.5 hours** - Extended intervals
+- **2 hours** - Minimal reminders
+
+### Notification Toggle
+- Enable/disable all notifications
+- When disabled, no popup reminders will appear
+- Settings are saved and persist across browser sessions
 
 ## Project Structure
 
@@ -72,7 +91,8 @@ src/
 │   ├── Popup.tsx       # Main popup interface
 │   ├── TaskForm.tsx    # Task creation form
 │   ├── TaskItem.tsx    # Individual task display
-│   └── Notification.tsx # Reminder notification
+│   ├── Notification.tsx # Reminder notification
+│   └── Settings.tsx    # Settings modal
 ├── utils/              # Utility functions
 │   └── storage.ts      # Chrome storage operations
 ├── types/              # TypeScript type definitions
@@ -90,16 +110,18 @@ src/
 - **Modern Typography**: Inter font family for clean readability
 - **Responsive Layout**: Optimized for the extension popup format
 - **Accessibility**: Focus states and keyboard navigation support
+- **Settings Modal**: Clean, intuitive settings interface
 
 ## Future Enhancements
 
-- [ ] Customizable reminder intervals
 - [ ] Task categories/tags
 - [ ] Task due dates
 - [ ] Progress tracking
 - [ ] Dark mode support
 - [ ] Task templates
 - [ ] Export/import functionality
+- [ ] Custom notification sounds
+- [ ] Do not disturb hours
 
 ## Sample
 
